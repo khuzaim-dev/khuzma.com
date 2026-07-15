@@ -31,7 +31,7 @@ export function SiteFooter() {
         {/* Left: avatar + name */}
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 rounded-full bg-neutral-200 overflow-hidden flex-shrink-0 relative">
-            <Image src="/profile.png" alt="Profile" fill className="object-cover object-top scale-[1.4] translate-y-[10%]" />
+            <Image src="/profile.jpeg" alt="Profile" fill className="object-cover object-top scale-[1.4] translate-y-[10%]" />
           </div>
           <span className="text-[11px] uppercase tracking-widest text-neutral-400 font-medium">
             Khuzaim

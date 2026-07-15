@@ -44,7 +44,7 @@ export function ProfileSection() {
       <div className="w-fit">
         <div className="border border-dashed border-neutral-300 rounded-full p-1 w-fit">
           <div className="w-14 h-14 rounded-full bg-neutral-200 flex items-center justify-center overflow-hidden relative">
-            <Image src="/profile.png" alt="Profile" fill className="object-cover object-top scale-[1.4] translate-y-[10%]" />
+            <Image src="/profile.jpeg" alt="Profile" fill className="object-cover object-top scale-[1.4] translate-y-[10%]" />
           </div>
         </div>
       </div>
