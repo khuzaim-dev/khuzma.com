@@ -1,26 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import { useState } from "react";
 import { Button } from "./ui/button";
-
-function CalEmbedLoader({ duration }: { duration: "15min" | "30min" }) {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: duration });
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-    })();
-  }, [duration]);
-
-  return (
-    <Cal 
-      namespace={duration}
-      calLink={`khuzaim/${duration}`}
-      style={{ width: "100%", height: "100%", overflow: "scroll" }}
-      config={{ layout: "month_view", useSlotsViewOnSmallScreen: "true" }}
-    />
-  );
-}
 
 export function MeetingBooking() {
   const [duration, setDuration] = useState<"15min" | "30min" | null>(null);
@@ -32,7 +13,11 @@ export function MeetingBooking() {
           &larr; Back to meeting types
         </Button>
         <div className="w-full h-[600px] rounded-xl border border-neutral-200 overflow-hidden bg-white">
-          <CalEmbedLoader duration={duration} />
+          <iframe 
+            src={`https://cal.com/khuzaim/${duration}?embed=true`} 
+            style={{ width: "100%", height: "100%", border: "none" }}
+            title={`Book ${duration} Meeting`}
+          />
         </div>
       </div>
     );
