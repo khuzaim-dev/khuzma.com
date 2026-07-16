@@ -20,15 +20,25 @@ export function ContactFormCard() {
     return e;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
-    // Stub: fake success
-    setSubmitted(true);
+    
+    const response = await fetch(e.currentTarget.action, {
+      method: e.currentTarget.method,
+      body: new FormData(e.currentTarget),
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      setSubmitted(true);
+    }
   };
 
   if (submitted) {
@@ -45,12 +55,15 @@ export function ContactFormCard() {
 
   return (
     <form
+      action="https://formspree.io/f/mrenpgee"
+      method="POST"
       onSubmit={handleSubmit}
       noValidate
       className="rounded-xl border border-neutral-200 bg-white p-3 space-y-2 min-w-[260px]"
     >
       <div>
         <Input
+          name="name"
           placeholder="Your name"
           value={form.name}
           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
@@ -63,6 +76,7 @@ export function ContactFormCard() {
 
       <div>
         <Input
+          name="email"
           type="email"
           placeholder="Your email"
           value={form.email}
@@ -76,6 +90,7 @@ export function ContactFormCard() {
 
       <div>
         <Textarea
+          name="message"
           placeholder="Your message"
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
